@@ -33,7 +33,7 @@ class RootReducer extends Reducer {
 \* ---------------------------------------------------------------------------------------------- */
 
 const reduxStore = new Store({
-  name: 'KawaxStore',
+  name: 'KawaJsStore',
   reducer: RootReducer.export(),
 });
 
@@ -45,7 +45,7 @@ setRuntime({
 **                                              Mixin
 \* ---------------------------------------------------------------------------------------------- */
 
-class KawaxMixin extends Mixin {
+class KawaJsMixin extends Mixin {
 
   static stateToProps = ({ select, ownProps }) => {
     const iterator = select('iterator');
@@ -63,7 +63,7 @@ class KawaxMixin extends Mixin {
 
 }
 
-const kawaxMixin = new KawaxMixin();
+const kawaJsMixin = new KawaJsMixin();
 
 /* ---------------------------------------------------------------------------------------------- *\
 **                                             Component
@@ -71,13 +71,13 @@ const kawaxMixin = new KawaxMixin();
 
 class ReactComponent extends React.Component {
 
-  static mixins = { kawaxMixin };
+  static mixins = { kawaJsMixin };
 
   static stateToProps = ({ state, select, mixins, ...opt }) => {
     const iterator = select('iterator');
     return {
       iterator: iterator,
-      mixin: mixins.kawaxMixin,
+      mixin: mixins.kawaJsMixin,
     };
   };
 
@@ -98,12 +98,12 @@ class ReactComponent extends React.Component {
 
 }
 
-const KawaxComponent = Component(ReactComponent);
+const KawaJsComponent = Component(ReactComponent);
 
 const Wrapper = (
   <Provider store={reduxStore.internal}>
     <Provider store={reduxStore}>
-      <KawaxComponent iterator={0} />
+      <KawaJsComponent iterator={0} />
     </Provider>
   </Provider>
 );

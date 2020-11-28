@@ -208,7 +208,7 @@ class Reducer extends Smart {
   _getInitialState(path) {
     const { initialState } = this.constructor;
     const state = initialState
-      ? this._reduce({}, this.constructor.initialState, { type: '@@kawax/INIT' }, [])
+      ? this._reduce({}, this.constructor.initialState, { type: '@@kawajs/INIT' }, [])
       : null;
     return _.isEmpty(path) ? state : _.get(state, path);
   }
