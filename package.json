@@ -33,8 +33,6 @@
     "dev": "npm run watch & npm run lint:watch",
     "lint": "eslint src tests --fix",
     "lint:watch": "nodemon -e js -x 'npm run lint'",
-    "test": "jest --noStackTrace",
-    "test:watch": "jest --watch"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
@@ -62,13 +60,10 @@
   "dependencies": {
     "@loadable/component": "^5.15.2",
     "aphrodite": "^2.3.1",
-    "babel-jest": "^26.3.0",
     "classnames": "^2.2.6",
     "clean-deep": "^3.0.2",
     "escape-regex-string": "^1.0.6",
     "history": "^4.10.1",
-    "jest": "^26.4.2",
-    "jest-cli": "^26.4.2",
     "lodash": "^4.17.20",
     "merge": "^2.1.1",
     "prop-types": "^15.8.1",
