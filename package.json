@@ -32,7 +32,7 @@
     "watch": "npm run commonjs:watch & npm run es:watch",
     "dev": "npm run watch & npm run lint:watch",
     "lint": "eslint src tests --fix",
-    "lint:watch": "nodemon -e js -x 'npm run lint'",
+    "lint:watch": "nodemon -e js -x 'npm run lint'"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
