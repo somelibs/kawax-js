@@ -51,9 +51,7 @@ export default function Component(Pure) {
   Pure.prototype.getForwardProps = function getForwardProps() {
     /* eslint-disable-next-line react/forbid-foreign-prop-types */
     const ownProps = _.keys(Pure.propTypes);
-    return _.omitBy(
-      this.props, (value, key) => (_.includes(ownProps, key) || _.includes(composedProps, key)),
-    );
+    return _.omitBy(this.props, (value, key) => (_.includes(ownProps, key) || _.includes(composedProps, key)));
   };
 
   /* -------------------------------------------------------------------------------------------- *\
@@ -300,13 +298,13 @@ export default function Component(Pure) {
       }
     }
 
-    componentDidUpdate = () => {
+    componentDidUpdate() {
       this.mapCssClasses();
-    };
+    }
 
-    componentDidMount = () => {
+    componentDidMount() {
       this.mapCssClasses();
-    };
+    }
 
     async componentWillUnmount() {
       if (!persistActionStack === true) {

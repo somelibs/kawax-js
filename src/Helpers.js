@@ -7,5 +7,5 @@ export default {
   log,
   select,
   resolve,
-  promiseAll
+  promiseAll,
 };
