@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import _ from 'lodash';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -51,7 +52,9 @@ export default function Component(Pure) {
   Pure.prototype.getForwardProps = function getForwardProps() {
     /* eslint-disable-next-line react/forbid-foreign-prop-types */
     const ownProps = _.keys(Pure.propTypes);
-    return _.omitBy(this.props, (value, key) => (_.includes(ownProps, key) || _.includes(composedProps, key)));
+    return _.omitBy(
+      this.props, (value, key) => (_.includes(ownProps, key) || _.includes(composedProps, key)),
+    );
   };
 
   /* -------------------------------------------------------------------------------------------- *\
@@ -339,6 +342,7 @@ export default function Component(Pure) {
         if (propsToContext) {
           updateComposedProps({ ...prevContext, ...propsToContext });
           return (
+            // eslint-disable-next-line react/jsx-no-constructed-context-values
             <Context.Provider value={{ ...prevContext, ...propsToContext }}>
               {this.renderComponent(ownProps)}
             </Context.Provider>

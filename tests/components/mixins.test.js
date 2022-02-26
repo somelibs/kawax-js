@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
@@ -87,6 +88,7 @@ class ReactComponent extends React.Component {
     iterator: PropTypes.number.isRequired,
   };
 
+  // eslint-disable-next-line react/no-unused-class-component-methods
   testMixin() {
     const { mixin } = this.props;
     return mixin();

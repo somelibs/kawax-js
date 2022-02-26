@@ -22,6 +22,13 @@ module.exports = {
     "@babel/object-curly-spacing": "off",
     "@babel/quotes": "off",
     "@babel/no-unused-expressions": "error",
+    "arrow-parens": ["error", "always"],
+    "class-methods-use-this": "off",
+    "consistent-return": "off",
+    "default-param-last": "off",
+    "func-names": "off",
+    "function-paren-newline": "off",
+    "guard-for-in": "off",
     "import/no-extraneous-dependencies": "off",
     "import/prefer-default-export": "off",
     "import/extensions": "off",
@@ -30,39 +37,26 @@ module.exports = {
     "import/no-namespace": "error",
     "jsx-a11y/anchor-is-valid": "off",
     "jsx-a11y/label-has-for": "off",
-    "react/jsx-filename-extension": "off",
-    "react/prefer-stateless-function": "off",
-    "no-prototype-builtins": "off",
-    "no-class-assign": "error",
-    "no-param-reassign": "off",
-    "no-underscore-dangle": "off",
-    "class-methods-use-this": "off",
-    "object-curly-newline": "off",
-    "guard-for-in": "off",
-    "consistent-return": "off",
-    "react/forbid-prop-types": "off",
-    "react/sort-comp": "off",
-    "react/no-unused-state": "off",
-    "arrow-parens": ["error", "always"],
-    "quote-props": ["error", "consistent-as-needed"],
-    "object-shorthand": ["error", "consistent-as-needed"],
-    "no-restricted-syntax": ["off", "ForInStatement"],
     "linebreak-style": ["error", "unix"],
-    "no-multiple-empty-lines": "error",
-    "no-trailing-spaces": ["error"],
-    "react/prop-types": ["error", {
-      ignore: ["actions", "context"]
-    }],
-    "no-return-assign": ["off"],
-    "react/destructuring-assignment": ["error", "always",
-      { "ignoreClassFields": true }
-    ],
-    "react/prop-types": ["error", {
-      ignore: ["actions", "context"]
-    }],
+    "no-class-assign": "error",
     "no-multiple-empty-lines": ["error",
       { "max": 1, "maxEOF": 1 }
     ],
+    "no-unused-vars": ["error", {
+      args: "none"
+    }],
+    "no-prototype-builtins": "off",
+    "no-return-assign": ["off"],
+    "no-restricted-syntax": ["off", "ForInStatement"],
+    "no-multiple-empty-lines": "error",
+    "no-trailing-spaces": ["error"],
+    "no-param-reassign": "off",
+    "no-underscore-dangle": "off",
+    "object-curly-newline": "off",
+    "object-shorthand": ["error", "consistent-as-needed"],
+    "padded-blocks": ["warn", {
+      classes:"always"
+    }],
     "prefer-destructuring": ["error", {
       "AssignmentExpression": {
         "array": false,
@@ -74,11 +68,22 @@ module.exports = {
     "quotes": ["warn", "single", {
       allowTemplateLiterals: true
     }],
-    "padded-blocks": ["warn", {
-      classes:"always"
+    "quote-props": ["error", "consistent-as-needed"],
+    "react/jsx-filename-extension": "off",
+    "react/prefer-stateless-function": "off",
+    "react/forbid-prop-types": "off",
+    "react/no-unused-state": "off",
+    "react/sort-comp": "off",
+    "react/static-property-placement": "off",
+    "react/state-in-constructor": "off",
+    "react/prop-types": ["error", {
+      ignore: ["actions", "context"]
     }],
-    "no-unused-vars": ["error", {
-      args: "none"
+    "react/destructuring-assignment": ["error", "always",
+      { "ignoreClassFields": true }
+    ],
+    "react/prop-types": ["error", {
+      ignore: ["actions", "context"]
     }]
   }
 }

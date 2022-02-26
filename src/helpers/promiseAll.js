@@ -1,5 +1,6 @@
 import _ from 'lodash';
 
+// eslint-diable-next-line func-names
 export default async function (object, async = true) {
   const resolvedObject = _.isArray(object) ? [] : {};
   const keys = Object.keys(object);

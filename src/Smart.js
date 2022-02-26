@@ -19,7 +19,7 @@ class Smart {
   constructor(options, ...args) {
     this.props = this._defineProps();
     this._defineDetaults(options);
-    return this.initialize(options, ...args);
+    this.initialize(options, ...args);
   }
 
   state = {};

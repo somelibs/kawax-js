@@ -60,6 +60,7 @@ class Router extends React.Component {
 
   render() {
     ReactRouter.displayName = 'ReactRouter';
+    // eslint-disable-next-line react/jsx-props-no-spreading
     return <ReactRouter {...this.props} />;
   }
 

@@ -133,7 +133,8 @@ class Action extends Smart {
       this._defineGetState();
       this._defineSetContext(...data);
       this._defineDispatchSuccess(...data);
-      new Promise(async (success) => { /* eslint-disable-line no-new */
+      // eslint-disable-next-line no-async-promise-executor, no-new
+      new Promise(async (success) => {
         try {
           this._bindActionsCreators(...data);
           await this._bindResources(...data);
@@ -155,6 +156,7 @@ class Action extends Smart {
           Log.error(exception);
           this.setStatus('error');
           this._removeSafeguard();
+          // eslint-disable-next-line no-promise-executor-return
           return exception;
         }
       });
@@ -212,6 +214,7 @@ class Action extends Smart {
     const actionCreators = resolve.call(this, this.constructor.actionCreators, ...ownData);
     _.each(actionCreators, (action, key) => {
       if (typeof action === 'function') {
+        // eslint-disable-next-line no-async-promise-executor
         this[key] = (...data) => new Promise(async (success, error) => {
           const actionInstance = action({
             origin: this.origin || this.constructor.name,
@@ -304,6 +307,7 @@ class Action extends Smart {
   }
 
   static bind(context) {
+    // eslint-disable-next-line no-async-promise-executor
     return (...data) => new Promise(async (success, error) => {
       const { dispatch, getState } = Runtime('store');
       const action = new this({ success, error, ...context });

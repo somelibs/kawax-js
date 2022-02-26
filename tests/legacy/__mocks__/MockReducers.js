@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import Reducer from '../../src/Reducer';
 
 class PlainObjectReducer extends Reducer {

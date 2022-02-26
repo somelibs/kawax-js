@@ -19,4 +19,5 @@ export Runtime from './instance/Runtime';
 export * as Helpers from './Helpers';
 
 /* -------------------------------------------- CORE -------------------------------------------- */
+// eslint-disable-next-line no-restricted-exports
 export default from './Core';
