@@ -1,4 +1,11 @@
-export log from './helpers/log';
-export select from './helpers/select';
-export resolve from './helpers/resolve';
-export promiseAll from './helpers/promiseAll';
+import log from './helpers/log';
+import select from './helpers/select';
+import resolve from './helpers/resolve';
+import promiseAll from './helpers/promiseAll';
+
+export default {
+  log,
+  select,
+  resolve,
+  promiseAll,
+};
