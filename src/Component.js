@@ -283,7 +283,7 @@ export default function Component(Pure) {
       if (Pure.className || Pure.css) {
         const { className } = this.fullProps;
         const cssClasses = getCssClasses(this.fullProps, this.state);
-        const fiber = _.get(componentInstance, '_reactInternalFiber');
+        const fiber = _.get(componentInstance, '_reactInternals');
         const sibling = _.get(fiber, 'child.sibling');
         const node = ReactDOM.findDOMNode(fiber.stateNode);
         if (node && (className || cssClasses)) {
