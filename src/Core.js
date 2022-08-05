@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import Smart from './Smart';
 import Store from './Store';
@@ -33,8 +33,9 @@ class Core extends Smart {
 
   initialize(env) {
     const htmlRoot = document.getElementById(this.htmlRoot) || document.body;
+    const reactRoot = createRoot(htmlRoot);
     const ReactContext = this._providerRenderer();
-    render(ReactContext, htmlRoot);
+    reactRoot.render(ReactContext);
   }
 
   _providerRenderer() {
