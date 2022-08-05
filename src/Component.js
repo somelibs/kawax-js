@@ -452,6 +452,8 @@ export default function Component(Pure) {
     ...options,
   });
 
+  const component = compose(contextWrapper, reduxConnect)(PureReflection);
+
   /* -------------------------------------------------------------------------------------------- *\
   |*                                       Static helpers                                         *|
   \* -------------------------------------------------------------------------------------------- */
