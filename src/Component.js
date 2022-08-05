@@ -78,7 +78,7 @@ export default function Component(Pure) {
 
   function aggregateStaticWithMixins(key) {
     return _.compact([
-      Pure[key] || {},
+      Pure[key], // || {} Migration react 17.x
       ..._.map(Pure.mixins, (mixin) => _.isObject(mixin.props) && mixin.props[key]),
     ]);
   }
@@ -140,7 +140,7 @@ export default function Component(Pure) {
   }
 
   /* -------------------------------------------------------------------------------------------- *\
-  |*                                           Wrapper                                            *|
+  |*                                       Context Wrapper                                        *|
   \* -------------------------------------------------------------------------------------------- */
 
   /* eslint-disable-next-line react/no-multi-comp */
@@ -162,12 +162,16 @@ export default function Component(Pure) {
         return React.createElement(Context.Consumer, null, (context) => {
           prevContext = context;
           const contextProps = resolveStaticWithMixins('contextToProps', { context, ownProps });
+
           updateComposedProps(contextProps);
           if (!_.isEmpty(contextProps)) {
             return React.createElement(component, { ...contextProps, ...ownProps, instanceKey });
           }
+
           return React.createElement(component, { ...ownProps, instanceKey });
+
         });
+
       }
       return React.createElement(component, { ...ownProps, instanceKey });
     }
@@ -447,8 +451,6 @@ export default function Component(Pure) {
     areMergedPropsEqual: (next, prev) => shallowCompare(next, prev),
     ...options,
   });
-
-  const component = compose(contextWrapper, reduxConnect)(PureReflection);
 
   /* -------------------------------------------------------------------------------------------- *\
   |*                                       Static helpers                                         *|
