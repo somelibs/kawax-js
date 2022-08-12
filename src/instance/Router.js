@@ -64,7 +64,7 @@ class Router extends React.Component {
     const location = history.location;
     const props = { ...this.props, location };
     // eslint-disable-next-line react/jsx-props-no-spreading
-    return <Router {...props} />;
+    return <ReactRouter {...props} />;
   }
 
 }

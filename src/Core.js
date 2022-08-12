@@ -32,11 +32,9 @@ class Core extends Smart {
   });
 
   initialize(env) {
-    console.log('-- Kawax Core -- initialize');
     const htmlRoot = document.getElementById(this.htmlRoot) || document.body;
     const reactRoot = createRoot(htmlRoot);
     const ReactContext = this._providerRenderer();
-    console.log('-- Kawax Core -- ReactContext', ReactContext);
     reactRoot.render(ReactContext);
   }
 
