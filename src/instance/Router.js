@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Router as ReactRouter } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 import Component from '../Component';
 import History from './History';
 import Runtime from './Runtime';
@@ -59,12 +59,11 @@ class Router extends React.Component {
   }
 
   render() {
-    ReactRouter.displayName = 'ReactRouter';
     const { history } = this.props;
     const location = history.location;
     const props = { ...this.props, location };
     // eslint-disable-next-line react/jsx-props-no-spreading
-    return <ReactRouter {...props} />;
+    return <BrowserRouter {...props} />;
   }
 
 }

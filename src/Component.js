@@ -6,13 +6,13 @@ import PropTypes from 'prop-types';
 import warning from 'warning';
 import { compose } from 'redux';
 import classNames from 'classnames';
+import { connect } from 'react-redux';
 import { StyleSheet, css } from './helpers/aphrodite';
 import Context from './instance/Context';
 import Runtime from './instance/Runtime';
 import ActionStack from './internal/ActionStack';
 import resolve from './helpers/resolve';
 import SelectHelper from './helpers/select';
-import { connect } from 'react-redux';
 
 export default function Component(Pure) {
 
