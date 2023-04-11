@@ -8,13 +8,13 @@
     "react",
     "redux"
   ],
-  "homepage": "https://github.com/bernstein-io/kawax-js",
+  "homepage": "https://github.com/somelibs/kawajs",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bernstein-io/kawax-js.git"
+    "url": "https://github.com/somelibs/kawajs.git"
   },
   "bugs": {
-    "url": "https://github.com/bernstein-io/kawax-js/issues"
+    "url": "https://github.com/somelibs/kawajs/issues"
   },
   "files": [
     "dist/cjs/**",
