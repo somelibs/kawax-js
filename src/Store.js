@@ -31,11 +31,20 @@ class Store extends Smart {
 
   _dispatch = (action) => this.internal.dispatch(action);
 
+  _combineMiddleware(customMiddlewares) {
+    return (getDefaultMiddleware) => {
+      const defaultMiddleware = getDefaultMiddleware({
+        serializableCheck: false
+      });
+      return defaultMiddleware.concat(customMiddlewares);
+    };
+  }
+
   _createInternalStore(name) {
     const internalReducer = InternalReducer.export();
     const customMiddlewares = this._getMiddlewares([], true);
     return configureStore({
-      middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(customMiddlewares),
+      middleware: this._combineMiddleware(customMiddlewares),
       reducer: internalReducer,
       devTools: __DEV__,
     });
@@ -43,7 +52,7 @@ class Store extends Smart {
 
   _createMainStore(customMiddlewares = [], reducer = this.reducer, name = false) {
     return configureStore({
-      middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(customMiddlewares),
+      middleware: this._combineMiddleware(customMiddlewares),
       reducer: reducer,
       devTools: __DEV__,
     });

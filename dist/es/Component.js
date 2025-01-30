@@ -334,8 +334,8 @@ function Component(Pure) {
         var current = currentClassNames ? currentClassNames.split(' ') : false;
         var currentClass = current ? _lodash["default"].reject(current, function (i) {
           return i === previousClassName;
-        }) : false;
-        var computedClass = getCssClasses(_this2.fullProps, _this2.state) || false;
+        }) : [];
+        var computedClass = getCssClasses(_this2.fullProps, _this2.state) || [];
         var uniq = _lodash["default"].uniq([].concat(_toConsumableArray(currentClass), _toConsumableArray(computedClass)));
         return (0, _classnames["default"])(_lodash["default"].compact(uniq));
       });

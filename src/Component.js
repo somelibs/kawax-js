@@ -272,8 +272,8 @@ export default function Component(Pure) {
 
     getClassNames = (currentClassNames) => { /* eslint-disable react/prop-types */
       const current = currentClassNames ? currentClassNames.split(' ') : false;
-      const currentClass = current ? _.reject(current, (i) => (i === previousClassName)) : false;
-      const computedClass = getCssClasses(this.fullProps, this.state) || false;
+      const currentClass = current ? _.reject(current, (i) => (i === previousClassName)) : [];
+      const computedClass = getCssClasses(this.fullProps, this.state) || [];
       const uniq = _.uniq([...currentClass, ...computedClass]);
       return classNames(_.compact(uniq));
     };

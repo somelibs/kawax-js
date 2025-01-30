@@ -82,14 +82,22 @@ var Store = /*#__PURE__*/function (_Smart) {
       });
     }
   }, {
+    key: "_combineMiddleware",
+    value: function _combineMiddleware(customMiddlewares) {
+      return function (getDefaultMiddleware) {
+        var defaultMiddleware = getDefaultMiddleware({
+          serializableCheck: false
+        });
+        return defaultMiddleware.concat(customMiddlewares);
+      };
+    }
+  }, {
     key: "_createInternalStore",
     value: function _createInternalStore(name) {
       var internalReducer = _InternalReducer["default"]["export"]();
       var customMiddlewares = this._getMiddlewares([], true);
       return (0, _toolkit.configureStore)({
-        middleware: function middleware(getDefaultMiddleware) {
-          return getDefaultMiddleware().concat(customMiddlewares);
-        },
+        middleware: this._combineMiddleware(customMiddlewares),
         reducer: internalReducer,
         devTools: __DEV__
       });
@@ -101,9 +109,7 @@ var Store = /*#__PURE__*/function (_Smart) {
       var reducer = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.reducer;
       var name = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
       return (0, _toolkit.configureStore)({
-        middleware: function middleware(getDefaultMiddleware) {
-          return getDefaultMiddleware().concat(customMiddlewares);
-        },
+        middleware: this._combineMiddleware(customMiddlewares),
         reducer: reducer,
         devTools: __DEV__
       });
