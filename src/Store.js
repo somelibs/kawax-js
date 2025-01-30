@@ -1,4 +1,5 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { configureStore, combineReducers } from '@reduxjs/toolkit'
+import { applyMiddleware, compose } from 'redux';
 import _ from 'lodash';
 import Thunk from 'redux-thunk';
 import Smart from './Smart';
@@ -31,21 +32,30 @@ class Store extends Smart {
   _dispatch = (action) => this.internal.dispatch(action);
 
   _createInternalStore(name) {
-    const enhancer = this._getEnhancer(name, true);
+    // const enhancer = this._getEnhancer(name, true);
     const internalReducer = InternalReducer.export();
-    return createStore(internalReducer, false, enhancer);
+    const customMiddlewares = this._getMiddlewares([], true);
+    return configureStore({
+      middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(customMiddlewares),
+      reducer: internalReducer,
+      devTools: __DEV__,
+    });
   }
 
   _createMainStore(customMiddlewares, reducer = this.reducer, name = false) {
-    const enhancer = this._getEnhancer(name, false, customMiddlewares);
-    return createStore(reducer, false, enhancer);
+    // const enhancer = this._getEnhancer(name, false, customMiddlewares);
+    return configureStore({
+      middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(customMiddlewares),
+      reducer: reducer,
+      devTools: __DEV__,
+    });
   }
 
-  _getEnhancer(name, internal = false, customMiddlewares = []) {
-    const composer = this._getComposer(name, internal);
-    const middlewares = this._getMiddlewares(customMiddlewares, internal);
-    return composer(middlewares);
-  }
+  // _getEnhancer(name, internal = false, customMiddlewares = []) {
+  //   const composer = this._getComposer(name, internal);
+  //   const middlewares = this._getMiddlewares(customMiddlewares, internal);
+  //   return composer(middlewares);
+  // }
 
   _getComposer(name = false, internal = false) {
     if (__DEV__ && global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
@@ -63,7 +73,8 @@ class Store extends Smart {
     if (__DEV__ && !internal) {
       middlewares.push(this._logger.bind(this));
     }
-    return applyMiddleware(...middlewares);
+    return middlewares;
+    //return applyMiddleware(...middlewares);
   }
 
   _withCustomLogger(next, action) {

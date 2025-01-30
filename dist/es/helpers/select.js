@@ -4,32 +4,23 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = select;
-var _get2 = _interopRequireDefault(require("lodash/get"));
-var _isPlainObject2 = _interopRequireDefault(require("lodash/isPlainObject"));
-var _find2 = _interopRequireDefault(require("lodash/find"));
-var _isMatch2 = _interopRequireDefault(require("lodash/isMatch"));
-var _filter2 = _interopRequireDefault(require("lodash/filter"));
-var _flatten2 = _interopRequireDefault(require("lodash/flatten"));
-var _isString2 = _interopRequireDefault(require("lodash/isString"));
-var _each2 = _interopRequireDefault(require("lodash/each"));
-var _first2 = _interopRequireDefault(require("lodash/first"));
-var _isArray2 = _interopRequireDefault(require("lodash/isArray"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var _lodash = _interopRequireDefault(require("lodash"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 var argsToArray = function argsToArray() {
   var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  return (0, _isArray2["default"])((0, _first2["default"])(args)) ? (0, _first2["default"])(args) : args;
+  return _lodash["default"].isArray(_lodash["default"].first(args)) ? _lodash["default"].first(args) : args;
 };
 var parsePathArray = function parsePathArray(args) {
   var paths = argsToArray(args);
   var parsedPath = [];
-  (0, _each2["default"])(paths, function (path) {
-    parsedPath.push((0, _isString2["default"])(path) ? path.split('.') : path);
+  _lodash["default"].each(paths, function (path) {
+    parsedPath.push(_lodash["default"].isString(path) ? path.split('.') : path);
   });
-  return (0, _flatten2["default"])(parsedPath);
+  return _lodash["default"].flatten(parsedPath);
 };
 function match(source, selector) {
-  return (0, _filter2["default"])(source, function (item) {
-    return (0, _isMatch2["default"])(item, selector);
+  return _lodash["default"].filter(source, function (item) {
+    return _lodash["default"].isMatch(item, selector);
   });
 }
 function select(source) {
@@ -40,19 +31,20 @@ function select(source) {
     args[_key - 1] = arguments[_key];
   }
   var pathArray = parsePathArray(args);
-  (0, _each2["default"])(pathArray, function (selector) {
+  _lodash["default"].each(pathArray, function (selector) {
     currentPath.push(selector);
-    if ((0, _isArray2["default"])(value)) {
-      if ((0, _isString2["default"])(selector)) {
-        value = (0, _find2["default"])(value, function (item) {
+    if (_lodash["default"].isArray(value)) {
+      if (_lodash["default"].isString(selector)) {
+        value = _lodash["default"].find(value, function (item) {
           return item[primaryKey] === selector;
         });
-      } else if ((0, _isPlainObject2["default"])(selector)) {
+      } else if (_lodash["default"].isPlainObject(selector)) {
         value = match(value, selector);
       }
     } else {
-      value = value ? (0, _get2["default"])(value, selector) : undefined;
+      value = value ? _lodash["default"].get(value, selector) : undefined;
     }
   });
   return value;
 }
+//# sourceMappingURL=select.js.map

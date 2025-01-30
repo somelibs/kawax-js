@@ -5,5 +5,5 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 var _history = require("history");
-var _default = (0, _history.createBrowserHistory)();
-exports["default"] = _default;
+var _default = exports["default"] = (0, _history.createBrowserHistory)();
+//# sourceMappingURL=History.js.map

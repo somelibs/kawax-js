@@ -12,3 +12,4 @@ function resolve(reference) {
   if (typeof reference === 'function') return reference.call.apply(reference, [this].concat(args));
   return reference;
 }
+//# sourceMappingURL=resolve.js.map

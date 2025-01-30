@@ -1,71 +1,75 @@
 "use strict";
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports["default"] = void 0;
-var _remove4 = _interopRequireDefault(require("lodash/remove"));
-var _concat2 = _interopRequireDefault(require("lodash/concat"));
-var _compact2 = _interopRequireDefault(require("lodash/compact"));
+var _toolkit = require("@reduxjs/toolkit");
 var _redux = require("redux");
+var _lodash = _interopRequireDefault(require("lodash"));
 var _reduxThunk = _interopRequireDefault(require("redux-thunk"));
 var _Smart2 = _interopRequireDefault(require("./Smart"));
 var _log = _interopRequireDefault(require("./helpers/log"));
 var _InternalReducer = _interopRequireDefault(require("./internal/InternalReducer"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
+function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
+function _assertThisInitialized(e) { if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); return e; }
+function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
+function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function (t) { return t.__proto__ || Object.getPrototypeOf(t); }, _getPrototypeOf(t); }
+function _inherits(t, e) { if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function"); t.prototype = Object.create(e && e.prototype, { constructor: { value: t, writable: !0, configurable: !0 } }), Object.defineProperty(t, "prototype", { writable: !1 }), e && _setPrototypeOf(t, e); }
+function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) { return t.__proto__ = e, t; }, _setPrototypeOf(t, e); }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 var Store = /*#__PURE__*/function (_Smart) {
-  _inherits(Store, _Smart);
-  var _super = _createSuper(Store);
   function Store() {
     var _this;
     _classCallCheck(this, Store);
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
-    _this = _super.call.apply(_super, [this].concat(args));
-    _defineProperty(_assertThisInitialized(_this), "pendingActions", []);
-    _defineProperty(_assertThisInitialized(_this), "dispatch", function (action) {
+    _this = _callSuper(this, Store, [].concat(args));
+    _defineProperty(_this, "pendingActions", []);
+    _defineProperty(_this, "dispatch", function (action) {
       _this.internal.dispatch(action);
       return _this.main.dispatch(action);
     });
-    _defineProperty(_assertThisInitialized(_this), "subscribe", function (listener) {
+    _defineProperty(_this, "subscribe", function (listener) {
       return _this.main.subscribe(listener);
     });
-    _defineProperty(_assertThisInitialized(_this), "replaceReducer", function (nextReducer) {
+    _defineProperty(_this, "replaceReducer", function (nextReducer) {
       return _this.main.replaceReducer(nextReducer);
     });
-    _defineProperty(_assertThisInitialized(_this), "getState", function () {
+    _defineProperty(_this, "getState", function () {
       return _this.main.getState();
     });
-    _defineProperty(_assertThisInitialized(_this), "getInternalState", function () {
+    _defineProperty(_this, "getInternalState", function () {
       return _this.internal.getState();
     });
-    _defineProperty(_assertThisInitialized(_this), "_dispatch", function (action) {
+    _defineProperty(_this, "_dispatch", function (action) {
       return _this.internal.dispatch(action);
     });
     return _this;
   }
-  _createClass(Store, [{
+  _inherits(Store, _Smart);
+  return _createClass(Store, [{
     key: "initialize",
     value: function initialize(_ref) {
       var reducer = _ref.reducer,
@@ -73,40 +77,50 @@ var Store = /*#__PURE__*/function (_Smart) {
         customMiddlewares = _ref.customMiddlewares;
       this.internal = this._createInternalStore(name);
       this.main = this._createMainStore(customMiddlewares, reducer, name);
-      if (process.env.NODE_ENV !== 'production') Object.assign(this, {
+      if (__DEV__) Object.assign(this, {
         pendingActions: []
       });
     }
   }, {
     key: "_createInternalStore",
     value: function _createInternalStore(name) {
-      var enhancer = this._getEnhancer(name, true);
+      // const enhancer = this._getEnhancer(name, true);
       var internalReducer = _InternalReducer["default"]["export"]();
-      return (0, _redux.createStore)(internalReducer, false, enhancer);
+      var customMiddlewares = this._getMiddlewares([], true);
+      return (0, _toolkit.configureStore)({
+        middleware: function middleware(getDefaultMiddleware) {
+          return getDefaultMiddleware().concat(customMiddlewares);
+        },
+        reducer: internalReducer,
+        devTools: __DEV__
+      });
     }
   }, {
     key: "_createMainStore",
     value: function _createMainStore(customMiddlewares) {
       var reducer = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.reducer;
       var name = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-      var enhancer = this._getEnhancer(name, false, customMiddlewares);
-      return (0, _redux.createStore)(reducer, false, enhancer);
+      // const enhancer = this._getEnhancer(name, false, customMiddlewares);
+      return (0, _toolkit.configureStore)({
+        middleware: function middleware(getDefaultMiddleware) {
+          return getDefaultMiddleware().concat(customMiddlewares);
+        },
+        reducer: reducer,
+        devTools: __DEV__
+      });
     }
-  }, {
-    key: "_getEnhancer",
-    value: function _getEnhancer(name) {
-      var internal = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-      var customMiddlewares = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-      var composer = this._getComposer(name, internal);
-      var middlewares = this._getMiddlewares(customMiddlewares, internal);
-      return composer(middlewares);
-    }
+
+    // _getEnhancer(name, internal = false, customMiddlewares = []) {
+    //   const composer = this._getComposer(name, internal);
+    //   const middlewares = this._getMiddlewares(customMiddlewares, internal);
+    //   return composer(middlewares);
+    // }
   }, {
     key: "_getComposer",
     value: function _getComposer() {
       var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
       var internal = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-      if (process.env.NODE_ENV !== 'production' && global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
+      if (__DEV__ && global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
         return global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
           name: internal ? "Kawax@".concat(name) : name,
           latency: 1000,
@@ -120,11 +134,12 @@ var Store = /*#__PURE__*/function (_Smart) {
     value: function _getMiddlewares() {
       var customMiddlewares = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
       var internal = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-      var middlewares = (0, _compact2["default"])((0, _concat2["default"])(_reduxThunk["default"], customMiddlewares));
-      if (process.env.NODE_ENV !== 'production' && !internal) {
+      var middlewares = _lodash["default"].compact(_lodash["default"].concat(_reduxThunk["default"], customMiddlewares));
+      if (__DEV__ && !internal) {
         middlewares.push(this._logger.bind(this));
       }
-      return _redux.applyMiddleware.apply(void 0, middlewares);
+      return middlewares;
+      //return applyMiddleware(...middlewares);
     }
   }, {
     key: "_withCustomLogger",
@@ -138,19 +153,19 @@ var Store = /*#__PURE__*/function (_Smart) {
       }
       var payload = next(action);
       if (action.status !== 'pending') {
-        var _remove2 = (0, _remove4["default"])(this.pendingActions, function (pendingAction) {
+        var _$remove = _lodash["default"].remove(this.pendingActions, function (pendingAction) {
             return pendingAction.id === action.id;
           }),
-          _remove3 = _slicedToArray(_remove2, 1),
-          initialAction = _remove3[0];
+          _$remove2 = _slicedToArray(_$remove, 1),
+          initialAction = _$remove2[0];
         duration = performance.now() - (initialAction ? initialAction.startTime : 0);
       }
       if (action.log) {
         var output = this._formatLog(action, duration);
         if (action.status === 'error') {
-          _log["default"].error.apply(_log["default"], output.concat(['Action:', action]));
+          _log["default"].error.apply(_log["default"], _toConsumableArray(output).concat(['Action:', action]));
         } else if (action.status === 'success') {
-          _log["default"].debug.apply(_log["default"], output.concat(['\n ', action]));
+          _log["default"].debug.apply(_log["default"], _toConsumableArray(output).concat(['\n ', action]));
         }
       }
       return payload;
@@ -163,7 +178,7 @@ var Store = /*#__PURE__*/function (_Smart) {
         "class": next.constructor.name
       }, action), false);
       var payload = next(action);
-      _log["default"].debug.apply(_log["default"], output.concat(['\n', action]));
+      _log["default"].debug.apply(_log["default"], _toConsumableArray(output).concat(['\n', action]));
       return payload;
     }
   }, {
@@ -172,7 +187,7 @@ var Store = /*#__PURE__*/function (_Smart) {
       var _this2 = this;
       return function (next) {
         return function (action) {
-          if (process.env.NODE_ENV !== 'production') {
+          if (__DEV__) {
             if (action.id && action.status) {
               return _this2._withCustomLogger(next, action);
             }
@@ -208,7 +223,6 @@ var Store = /*#__PURE__*/function (_Smart) {
       return action.status === 'error' ? ["".concat(className, ": ").concat(status, " (").concat(header, ") (").concat(time, ")")] : ["%c".concat(className, ": ").concat(status, " (").concat(header, ") (").concat(time, ")"), style];
     }
   }]);
-  return Store;
 }(_Smart2["default"]);
-var _default = Store;
-exports["default"] = _default;
+var _default = exports["default"] = Store;
+//# sourceMappingURL=Store.js.map

@@ -1,41 +1,36 @@
 "use strict";
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports["default"] = void 0;
-var _includes2 = _interopRequireDefault(require("lodash/includes"));
-var _compact2 = _interopRequireDefault(require("lodash/compact"));
-var _clone2 = _interopRequireDefault(require("lodash/clone"));
-var _isObject2 = _interopRequireDefault(require("lodash/isObject"));
-var _concat2 = _interopRequireDefault(require("lodash/concat"));
-var _isFunction2 = _interopRequireDefault(require("lodash/isFunction"));
-var _isPlainObject2 = _interopRequireDefault(require("lodash/isPlainObject"));
-var _isEqual2 = _interopRequireDefault(require("lodash/isEqual"));
-var _get2 = _interopRequireDefault(require("lodash/get"));
-var _each2 = _interopRequireDefault(require("lodash/each"));
-var _cloneDeep2 = _interopRequireDefault(require("lodash/cloneDeep"));
-var _isEmpty2 = _interopRequireDefault(require("lodash/isEmpty"));
-var _remove2 = _interopRequireDefault(require("lodash/remove"));
-var _isArray2 = _interopRequireDefault(require("lodash/isArray"));
+var _lodash = _interopRequireDefault(require("lodash"));
 var _Smart2 = _interopRequireDefault(require("./Smart"));
 var _resolve = _interopRequireDefault(require("./helpers/resolve"));
 var _excluded = ["depth"];
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
+function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
+function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
+function _assertThisInitialized(e) { if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); return e; }
+function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
+function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function (t) { return t.__proto__ || Object.getPrototypeOf(t); }, _getPrototypeOf(t); }
+function _inherits(t, e) { if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function"); t.prototype = Object.create(e && e.prototype, { constructor: { value: t, writable: !0, configurable: !0 } }), Object.defineProperty(t, "prototype", { writable: !1 }), e && _setPrototypeOf(t, e); }
+function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) { return t.__proto__ = e, t; }, _setPrototypeOf(t, e); }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 function ReducerDelegate(instance) {
   this._reduce = function (state, action) {
     return instance.call(state, action);
@@ -47,73 +42,71 @@ function ForceAssignment(callback) {
   };
 }
 var Reducer = /*#__PURE__*/function (_Smart) {
-  _inherits(Reducer, _Smart);
-  var _super = _createSuper(Reducer);
   function Reducer() {
     var _this;
     _classCallCheck(this, Reducer);
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
-    _this = _super.call.apply(_super, [this].concat(args));
-    _defineProperty(_assertThisInitialized(_this), "unionKey", 'id');
-    _defineProperty(_assertThisInitialized(_this), "onPending", function (pointer) {
+    _this = _callSuper(this, Reducer, [].concat(args));
+    _defineProperty(_this, "unionKey", 'id');
+    _defineProperty(_this, "onPending", function (pointer) {
       return function (state, action) {
         return _this._matchWithStatus(['pending'], pointer)(state, action);
       };
     });
-    _defineProperty(_assertThisInitialized(_this), "onSuccess", function (pointer) {
+    _defineProperty(_this, "onSuccess", function (pointer) {
       return function (state, action) {
         return _this._matchWithStatus(['success'], pointer)(state, action);
       };
     });
-    _defineProperty(_assertThisInitialized(_this), "onError", function (pointer) {
+    _defineProperty(_this, "onError", function (pointer) {
       return function (state, action) {
         return _this._matchWithStatus(['error'], pointer)(state, action);
       };
     });
-    _defineProperty(_assertThisInitialized(_this), "onDone", function (pointer) {
+    _defineProperty(_this, "onDone", function (pointer) {
       return function (state, action) {
         return _this._matchWithStatus(['success', 'error'], pointer)(state, action);
       };
     });
-    _defineProperty(_assertThisInitialized(_this), "matchPending", function (map) {
+    _defineProperty(_this, "matchPending", function (map) {
       return _this.onPending(_this.match(map));
     });
-    _defineProperty(_assertThisInitialized(_this), "matchSuccess", function (map) {
+    _defineProperty(_this, "matchSuccess", function (map) {
       return _this.onSuccess(_this.match(map));
     });
-    _defineProperty(_assertThisInitialized(_this), "matchError", function (map) {
+    _defineProperty(_this, "matchError", function (map) {
       return _this.onError(_this.match(map));
     });
-    _defineProperty(_assertThisInitialized(_this), "matchDone", function (map) {
+    _defineProperty(_this, "matchDone", function (map) {
       return _this.onDone(_this.match(map));
     });
-    _defineProperty(_assertThisInitialized(_this), "replace", function (next) {
+    _defineProperty(_this, "replace", function (next) {
       return _this.shallow(next, -1);
     });
-    _defineProperty(_assertThisInitialized(_this), "assign", function (state, _ref) {
+    _defineProperty(_this, "assign", function (state, _ref) {
       var payload = _ref.payload;
       return payload;
     });
-    _defineProperty(_assertThisInitialized(_this), "assignItem", function (state, _ref2) {
+    _defineProperty(_this, "assignItem", function (state, _ref2) {
       var payload = _ref2.payload;
-      return (0, _isArray2["default"])(state) ? [payload] : payload;
+      return _lodash["default"].isArray(state) ? [payload] : payload;
     });
-    _defineProperty(_assertThisInitialized(_this), "removeItem", function (predicate) {
+    _defineProperty(_this, "removeItem", function (predicate) {
       return _this._forceAssign(function (current) {
-        (0, _remove2["default"])(current, predicate);
+        _lodash["default"].remove(current, predicate);
         return current;
       });
     });
-    _defineProperty(_assertThisInitialized(_this), "mergeBy", function (unionKey, next) {
+    _defineProperty(_this, "mergeBy", function (unionKey, next) {
       return function (prev, action) {
         return _this._forceAssign(function (current, path) {
           return _this._parseArray(prev, next, action, path, -1, unionKey);
         });
       };
     });
-    _defineProperty(_assertThisInitialized(_this), "shallow", function (next) {
+    _defineProperty(_this, "shallow", function (next) {
       var depth = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
       return _this._forceAssign(function (current, action, path) {
         if (!path) {
@@ -122,10 +115,10 @@ var Reducer = /*#__PURE__*/function (_Smart) {
         return next;
       });
     });
-    _defineProperty(_assertThisInitialized(_this), "matchOn", function (statuses) {
+    _defineProperty(_this, "matchOn", function (statuses) {
       return function (state, action) {
         var next = state;
-        (0, _each2["default"])(statuses, function (map, status) {
+        _lodash["default"].each(statuses, function (map, status) {
           // eslint-disable-next-line default-case
           switch (status) {
             case 'success':
@@ -142,19 +135,20 @@ var Reducer = /*#__PURE__*/function (_Smart) {
         return next;
       };
     });
-    _defineProperty(_assertThisInitialized(_this), "_forceAssign", function (helper) {
+    _defineProperty(_this, "_forceAssign", function (helper) {
       return new ForceAssignment(helper);
     });
     return _this;
   }
-  _createClass(Reducer, [{
+  _inherits(Reducer, _Smart);
+  return _createClass(Reducer, [{
     key: "call",
     value: function call(state, _ref3) {
       var _ref3$depth = _ref3.depth,
         depth = _ref3$depth === void 0 ? 0 : _ref3$depth,
         action = _objectWithoutProperties(_ref3, _excluded);
       var path = [];
-      var current = (0, _isEmpty2["default"])(state) ? this._getInitialState(path) : (0, _cloneDeep2["default"])(state);
+      var current = _lodash["default"].isEmpty(state) ? this._getInitialState(path) : _lodash["default"].cloneDeep(state);
       action.depth = depth + 1;
       var baseState = this._embeddedReducer(current, action) || current;
       var resolvedState = _resolve["default"].call(this, this.state, baseState, action);
@@ -168,7 +162,7 @@ var Reducer = /*#__PURE__*/function (_Smart) {
       return function (state, action) {
         var next = state;
         var type = action.type;
-        (0, _each2["default"])(map, function (pointer, match) {
+        _lodash["default"].each(map, function (pointer, match) {
           var regex = new RegExp("(^[^.]?|[.])".concat(match), 'g');
           if (type && type.match(regex)) {
             var resolvedState = _resolve["default"].call(_this2, pointer, state, action);
@@ -190,7 +184,7 @@ var Reducer = /*#__PURE__*/function (_Smart) {
   }, {
     key: "_shouldDelegate",
     value: function _shouldDelegate(next, path) {
-      var initialState = (0, _get2["default"])(this.constructor.initialState, path);
+      var initialState = _lodash["default"].get(this.constructor.initialState, path);
       if (initialState && initialState instanceof ReducerDelegate) {
         return true;
       }
@@ -206,7 +200,7 @@ var Reducer = /*#__PURE__*/function (_Smart) {
       var depth = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : -1;
       var state;
       var shouldDelegate = this._shouldDelegate(next, path);
-      if (!(0, _isEqual2["default"])(current, next) && !shouldDelegate) {
+      if (!_lodash["default"].isEqual(current, next) && !shouldDelegate) {
         state = this._parseState(current, next, action, path, depth);
       } else if (shouldDelegate === true) {
         state = this._delegateState(current, next, action, path);
@@ -220,7 +214,7 @@ var Reducer = /*#__PURE__*/function (_Smart) {
         return next._reduce(current, action);
       }
       if (next === null) {
-        var initialState = (0, _get2["default"])(this.constructor.initialState, path);
+        var initialState = _lodash["default"].get(this.constructor.initialState, path);
         return initialState._reduce(next, action);
       }
     }
@@ -228,13 +222,13 @@ var Reducer = /*#__PURE__*/function (_Smart) {
     key: "_parseState",
     value: function _parseState(current, next, action, path) {
       var depth = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : -1;
-      if ((0, _isPlainObject2["default"])(next)) {
+      if (_lodash["default"].isPlainObject(next)) {
         return this._parsePlainObject(current, next, action, path, depth);
       }
-      if ((0, _isArray2["default"])(next) && !path) {
+      if (_lodash["default"].isArray(next) && !path) {
         return this._parseArray(current, next, action, path, depth);
       }
-      if ((0, _isFunction2["default"])(next)) {
+      if (_lodash["default"].isFunction(next)) {
         var resolvedState = _resolve["default"].call(this, next, current, action);
         var reducedState = this._reduce(current, resolvedState, action, path);
         return this._assignNext(current, reducedState);
@@ -252,10 +246,10 @@ var Reducer = /*#__PURE__*/function (_Smart) {
       var _this3 = this;
       var depth = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : -1;
       var state = {};
-      (0, _each2["default"])(next, function (nextItem, key) {
-        var currentPath = path ? (0, _concat2["default"])(path, key) : false;
-        var currentItem = (0, _isObject2["default"])(current) ? current[key] : null;
-        var nextDepth = depth < 0 || depth > 1 ? (0, _clone2["default"])(depth) - 1 : false;
+      _lodash["default"].each(next, function (nextItem, key) {
+        var currentPath = path ? _lodash["default"].concat(path, key) : false;
+        var currentItem = _lodash["default"].isObject(current) ? current[key] : null;
+        var nextDepth = depth < 0 || depth > 1 ? _lodash["default"].clone(depth) - 1 : false;
         state[key] = nextDepth && nextItem ? _this3._reduce(currentItem, nextItem, action, currentPath, nextDepth) : nextItem;
       });
       return this._assignNext(current, state);
@@ -267,13 +261,13 @@ var Reducer = /*#__PURE__*/function (_Smart) {
       var depth = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : -1;
       var unionKey = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : this.unionKey;
       var union = [];
-      var nextItems = [].concat(next);
-      (0, _each2["default"])(current, function (currentItem, key) {
-        var currentPath = path ? (0, _concat2["default"])(path, key) : false;
-        var nextDepth = depth < 0 || depth > 1 ? (0, _clone2["default"])(depth) - 1 : false;
+      var nextItems = _toConsumableArray(next);
+      _lodash["default"].each(current, function (currentItem, key) {
+        var currentPath = path ? _lodash["default"].concat(path, key) : false;
+        var nextDepth = depth < 0 || depth > 1 ? _lodash["default"].clone(depth) - 1 : false;
         if (currentItem) {
           union[key] = currentItem;
-          (0, _each2["default"])(nextItems, function (nextItem, nextKey) {
+          _lodash["default"].each(nextItems, function (nextItem, nextKey) {
             var matchKey = nextItem && nextItem[unionKey] ? nextItem[unionKey] : false;
             if (matchKey && currentItem[unionKey] === matchKey) {
               union[key] = nextDepth ? _this4._reduce(currentItem, nextItem, action, currentPath, nextDepth) : nextItem;
@@ -282,12 +276,12 @@ var Reducer = /*#__PURE__*/function (_Smart) {
           });
         }
       });
-      return (0, _compact2["default"])([].concat(union, nextItems));
+      return _lodash["default"].compact([].concat(union, _toConsumableArray(nextItems)));
     }
   }, {
     key: "_assignNext",
     value: function _assignNext(current, next) {
-      if ((0, _isPlainObject2["default"])(current) && (0, _isPlainObject2["default"])(next)) {
+      if (_lodash["default"].isPlainObject(current) && _lodash["default"].isPlainObject(next)) {
         return Object.assign({}, current, next);
       }
       return next === undefined ? current : next;
@@ -299,14 +293,14 @@ var Reducer = /*#__PURE__*/function (_Smart) {
       var state = initialState ? this._reduce({}, this.constructor.initialState, {
         type: '@@kawax/INIT'
       }, []) : null;
-      return (0, _isEmpty2["default"])(path) ? state : (0, _get2["default"])(state, path);
+      return _lodash["default"].isEmpty(path) ? state : _lodash["default"].get(state, path);
     }
   }, {
     key: "_matchWithStatus",
     value: function _matchWithStatus(statuses, callback) {
       var _this5 = this;
       return function (state, action) {
-        return (0, _includes2["default"])(statuses, action.status) ? _resolve["default"].call(_this5, callback, state, action) : state;
+        return _lodash["default"].includes(statuses, action.status) ? _resolve["default"].call(_this5, callback, state, action) : state;
       };
     }
   }], [{
@@ -316,9 +310,8 @@ var Reducer = /*#__PURE__*/function (_Smart) {
       return new ReducerDelegate(instance);
     }
   }]);
-  return Reducer;
 }(_Smart2["default"]);
 _defineProperty(Reducer, "initialState", null);
 _defineProperty(Reducer, "applyEmbeddedReducer", true);
-var _default = Reducer;
-exports["default"] = _default;
+var _default = exports["default"] = Reducer;
+//# sourceMappingURL=Reducer.js.map

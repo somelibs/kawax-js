@@ -1,6 +1,8 @@
 "use strict";
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports["default"] = resolve;
 function resolve(reference) {
   for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -10,3 +12,4 @@ function resolve(reference) {
   if (typeof reference === 'function') return reference.call.apply(reference, [this].concat(args));
   return reference;
 }
+//# sourceMappingURL=resolve.js.map
