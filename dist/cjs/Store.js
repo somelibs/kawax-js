@@ -84,7 +84,6 @@ var Store = /*#__PURE__*/function (_Smart) {
   }, {
     key: "_createInternalStore",
     value: function _createInternalStore(name) {
-      // const enhancer = this._getEnhancer(name, true);
       var internalReducer = _InternalReducer["default"]["export"]();
       var customMiddlewares = this._getMiddlewares([], true);
       return (0, _toolkit.configureStore)({
@@ -97,10 +96,10 @@ var Store = /*#__PURE__*/function (_Smart) {
     }
   }, {
     key: "_createMainStore",
-    value: function _createMainStore(customMiddlewares) {
+    value: function _createMainStore() {
+      var customMiddlewares = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
       var reducer = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.reducer;
       var name = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-      // const enhancer = this._getEnhancer(name, false, customMiddlewares);
       return (0, _toolkit.configureStore)({
         middleware: function middleware(getDefaultMiddleware) {
           return getDefaultMiddleware().concat(customMiddlewares);
@@ -109,12 +108,6 @@ var Store = /*#__PURE__*/function (_Smart) {
         devTools: __DEV__
       });
     }
-
-    // _getEnhancer(name, internal = false, customMiddlewares = []) {
-    //   const composer = this._getComposer(name, internal);
-    //   const middlewares = this._getMiddlewares(customMiddlewares, internal);
-    //   return composer(middlewares);
-    // }
   }, {
     key: "_getComposer",
     value: function _getComposer() {
@@ -139,7 +132,6 @@ var Store = /*#__PURE__*/function (_Smart) {
         middlewares.push(this._logger.bind(this));
       }
       return middlewares;
-      //return applyMiddleware(...middlewares);
     }
   }, {
     key: "_withCustomLogger",

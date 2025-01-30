@@ -32,7 +32,6 @@ class Store extends Smart {
   _dispatch = (action) => this.internal.dispatch(action);
 
   _createInternalStore(name) {
-    // const enhancer = this._getEnhancer(name, true);
     const internalReducer = InternalReducer.export();
     const customMiddlewares = this._getMiddlewares([], true);
     return configureStore({
@@ -42,20 +41,13 @@ class Store extends Smart {
     });
   }
 
-  _createMainStore(customMiddlewares, reducer = this.reducer, name = false) {
-    // const enhancer = this._getEnhancer(name, false, customMiddlewares);
+  _createMainStore(customMiddlewares = [], reducer = this.reducer, name = false) {
     return configureStore({
       middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(customMiddlewares),
       reducer: reducer,
       devTools: __DEV__,
     });
   }
-
-  // _getEnhancer(name, internal = false, customMiddlewares = []) {
-  //   const composer = this._getComposer(name, internal);
-  //   const middlewares = this._getMiddlewares(customMiddlewares, internal);
-  //   return composer(middlewares);
-  // }
 
   _getComposer(name = false, internal = false) {
     if (__DEV__ && global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
@@ -74,7 +66,6 @@ class Store extends Smart {
       middlewares.push(this._logger.bind(this));
     }
     return middlewares;
-    //return applyMiddleware(...middlewares);
   }
 
   _withCustomLogger(next, action) {
