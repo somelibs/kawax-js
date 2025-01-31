@@ -91,7 +91,8 @@ _defineProperty(Core, "defaults", function (options) {
     store: new _Store["default"]({
       name: options.name,
       reducer: options.reducer,
-      customMiddlewares: options.customMiddlewares
+      customMiddlewares: options.customMiddlewares,
+      disableSanityChecks: !!options.disableSanityChecks
     }),
     withRouter: options.withRouter !== false
   }));

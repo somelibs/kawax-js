@@ -74,7 +74,10 @@ var Store = /*#__PURE__*/function (_Smart) {
     value: function initialize(_ref) {
       var reducer = _ref.reducer,
         name = _ref.name,
-        customMiddlewares = _ref.customMiddlewares;
+        customMiddlewares = _ref.customMiddlewares,
+        _ref$disableSanityChe = _ref.disableSanityChecks,
+        disableSanityChecks = _ref$disableSanityChe === void 0 ? false : _ref$disableSanityChe;
+      this.disableSanityChecks = !!disableSanityChecks;
       this.internal = this._createInternalStore(name);
       this.main = this._createMainStore(customMiddlewares, reducer, name);
       if (__DEV__) Object.assign(this, {
@@ -84,10 +87,11 @@ var Store = /*#__PURE__*/function (_Smart) {
   }, {
     key: "_combineMiddleware",
     value: function _combineMiddleware(middlewares) {
+      var _this2 = this;
       return function (getDefaultMiddleware) {
         var defaultMiddleware = getDefaultMiddleware({
-          serializableCheck: false,
-          immutableCheck: false
+          serializableCheck: !_this2.disableSanityChecks,
+          immutableCheck: !_this2.disableSanityChecks
         });
         return defaultMiddleware.concat(middlewares);
       };
@@ -170,14 +174,14 @@ var Store = /*#__PURE__*/function (_Smart) {
   }, {
     key: "_logger",
     value: function _logger() {
-      var _this2 = this;
+      var _this3 = this;
       return function (next) {
         return function (action) {
           if (__DEV__) {
             if (action.id && action.status) {
-              return _this2._withCustomLogger(next, action);
+              return _this3._withCustomLogger(next, action);
             }
-            return _this2._withSimpleLogger(next, action);
+            return _this3._withSimpleLogger(next, action);
           }
           return next(action);
         };

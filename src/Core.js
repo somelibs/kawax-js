@@ -27,6 +27,7 @@ class Core extends Smart {
       name: options.name,
       reducer: options.reducer,
       customMiddlewares: options.customMiddlewares,
+      disableSanityChecks: !!options.disableSanityChecks
     }),
     withRouter: options.withRouter !== false,
   });

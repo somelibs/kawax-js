@@ -10,7 +10,8 @@ class Store extends Smart {
 
   pendingActions = [];
 
-  initialize({ reducer, name, customMiddlewares }) {
+  initialize({ reducer, name, customMiddlewares, disableSanityChecks = false }) {
+    this.disableSanityChecks = !!disableSanityChecks;
     this.internal = this._createInternalStore(name);
     this.main = this._createMainStore(customMiddlewares, reducer, name);
     if (__DEV__) Object.assign(this, { pendingActions: [] });
@@ -34,8 +35,8 @@ class Store extends Smart {
   _combineMiddleware(middlewares) {
     return (getDefaultMiddleware) => {
       const defaultMiddleware = getDefaultMiddleware({
-        serializableCheck: false,
-        immutableCheck: false
+        serializableCheck: !this.disableSanityChecks,
+        immutableCheck: !this.disableSanityChecks
       });
       return defaultMiddleware.concat(middlewares);
     };
