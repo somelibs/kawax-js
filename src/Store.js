@@ -31,42 +31,33 @@ class Store extends Smart {
 
   _dispatch = (action) => this.internal.dispatch(action);
 
-  _combineMiddleware(customMiddlewares) {
+  _combineMiddleware(middlewares) {
     return (getDefaultMiddleware) => {
       const defaultMiddleware = getDefaultMiddleware({
-        serializableCheck: false
+        serializableCheck: false,
+        immutableCheck: false
       });
-      return defaultMiddleware.concat(customMiddlewares);
+      return defaultMiddleware.concat(middlewares);
     };
   }
 
   _createInternalStore(name) {
     const internalReducer = InternalReducer.export();
-    const customMiddlewares = this._getMiddlewares([], true);
+    const middlewares = this._getMiddlewares([], true);
     return configureStore({
-      middleware: this._combineMiddleware(customMiddlewares),
+      middleware: this._combineMiddleware(middlewares),
       reducer: internalReducer,
       devTools: __DEV__,
     });
   }
 
   _createMainStore(customMiddlewares = [], reducer = this.reducer, name = false) {
+    const middlewares = this._getMiddlewares(customMiddlewares, false);
     return configureStore({
-      middleware: this._combineMiddleware(customMiddlewares),
+      middleware: this._combineMiddleware(middlewares),
       reducer: reducer,
       devTools: __DEV__,
     });
-  }
-
-  _getComposer(name = false, internal = false) {
-    if (__DEV__ && global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
-      return global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-        name: internal ? `Kawax@${name}` : name,
-        latency: 1000,
-        maxAge: 25,
-      });
-    }
-    return compose;
   }
 
   _getMiddlewares(customMiddlewares = [], internal = false) {

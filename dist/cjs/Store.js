@@ -83,21 +83,22 @@ var Store = /*#__PURE__*/function (_Smart) {
     }
   }, {
     key: "_combineMiddleware",
-    value: function _combineMiddleware(customMiddlewares) {
+    value: function _combineMiddleware(middlewares) {
       return function (getDefaultMiddleware) {
         var defaultMiddleware = getDefaultMiddleware({
-          serializableCheck: false
+          serializableCheck: false,
+          immutableCheck: false
         });
-        return defaultMiddleware.concat(customMiddlewares);
+        return defaultMiddleware.concat(middlewares);
       };
     }
   }, {
     key: "_createInternalStore",
     value: function _createInternalStore(name) {
       var internalReducer = _InternalReducer["default"]["export"]();
-      var customMiddlewares = this._getMiddlewares([], true);
+      var middlewares = this._getMiddlewares([], true);
       return (0, _toolkit.configureStore)({
-        middleware: this._combineMiddleware(customMiddlewares),
+        middleware: this._combineMiddleware(middlewares),
         reducer: internalReducer,
         devTools: __DEV__
       });
@@ -108,25 +109,12 @@ var Store = /*#__PURE__*/function (_Smart) {
       var customMiddlewares = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
       var reducer = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.reducer;
       var name = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+      var middlewares = this._getMiddlewares(customMiddlewares, false);
       return (0, _toolkit.configureStore)({
-        middleware: this._combineMiddleware(customMiddlewares),
+        middleware: this._combineMiddleware(middlewares),
         reducer: reducer,
         devTools: __DEV__
       });
-    }
-  }, {
-    key: "_getComposer",
-    value: function _getComposer() {
-      var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-      var internal = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-      if (__DEV__ && global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
-        return global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-          name: internal ? "Kawax@".concat(name) : name,
-          latency: 1000,
-          maxAge: 25
-        });
-      }
-      return _redux.compose;
     }
   }, {
     key: "_getMiddlewares",
